@@ -1,0 +1,5 @@
+---
+
+- hosts: openhab2.viskum-net.dk
+  roles:
+    - { role: openhab, become: yes }

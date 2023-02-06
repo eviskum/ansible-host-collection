@@ -1,0 +1,54 @@
+---
+
+- hosts: ns2.viskum-net.mosevang
+  tasks:
+  - name: Install DHCP and DNS server
+    become: yes
+    apt:
+      name:
+      - isc-dhcp-server
+      - bind9
+      - bind9utils
+      - python-dnspython
+      - python3-pip
+      state: present
+      update_cache: yes
+      force_apt_get: yes
+  - name: Check for existing key files
+    become: yes
+    find:
+      paths: "/home/vagrant"
+      recurse: no
+      patterns: "Kddns*.private"
+      file_type: any
+    register: existing_files
+  - name: Generate DNSSEC key
+    become: yes
+    command: dnssec-keygen -a HMAC-MD5 -b 128 -r /dev/urandom -n USER DDNS_UPDATE
+    when: existing_files.files|length == 0
+  - name: Find key files
+    become: yes
+    find:
+      paths: "/home/vagrant"
+      recurse: no
+      patterns: "Kddns*.private"
+      file_type: any
+    register: key_files
+  - name: Extract key value
+    become: yes
+    command: >
+           awk '/Key:/ {print $2}' {{ item.path }}
+    register: key_value
+    with_items: "{{ key_files.files }}"
+  - name: Set dnskey_val variable
+    set_fact:
+      dnskey_val: "{{ key_value.results[0].stdout }}"
+
+
+#  - name: Debug print
+#    debug:
+#      msg: "{{ key_value.results[0].stdout }}"
+
+# dnssec-keygen -a HMAC-MD5 -b 128 -r /dev/urandom -n USER DDNS_UPDATE
+# sudo pip3 install --upgrade certbot
+# sudo pip3 install --upgrade certbot-dns-route53

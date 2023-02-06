@@ -1,0 +1,16 @@
+---
+
+- hosts: ns1.viskum-net.dk
+  tasks:
+  - name: Add CNAME record
+    nsupdate:
+      key_algorithm: HMAC-MD5.SIG-ALG.REG.INT
+      key_name: "DDNS_UPDATE"
+      key_secret: "xxx"
+      server: "192.168.12.55"
+      zone: "viskum-net.dk"
+      record: "unifi"
+      value: "unifi1"
+      type: "CNAME"
+#      state: absent
+      state: present

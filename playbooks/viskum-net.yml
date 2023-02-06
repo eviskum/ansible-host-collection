@@ -1,0 +1,14 @@
+- hosts: mosevangsrvs
+  roles:
+  - basic
+
+- hosts: localhost
+  roles:
+  - ctrlmachine
+
+- hosts: zabbix1.viskum-net.dk
+  roles:
+    - { role: geerlingguy.apache }
+    - { role: dj-wasabi.zabbix-server, zabbix_server_database: mysql, zabbix_server_database_long: mysql, zabbix_server_dbport: 3306 }
+    - { role: dj-wasabi.zabbix-web, zabbix_url: zabbix.viskum-net.dk, zabbix_server_database: mysql, zabbix_server_database_long: mysql, zabbix_server_dbport: 3306, zabbix_apache_tls_crt: /etc/zabbix/certs/fullchain.pem, zabbix_apache_tls_key: /etc/zabbix/certs/privkey.pem, zabbix_apache_tls: true, zabbix_apache_redirect: true }
+    - { role: dj-wasabi.zabbix-agent, zabbix_agent_server: localhost, zabbix_install_pip_packages: False }

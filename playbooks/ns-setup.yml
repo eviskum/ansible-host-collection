@@ -1,0 +1,20 @@
+---
+
+- hosts: ns1.viskum-net.dk
+  tasks:
+  - name: Install dnspython
+    apt:
+      name:
+      - isc-dhcp-server
+      - bind9
+      - bind9utils
+      - python-dnspython
+      - python3-pip
+      state: present
+      update_cache: yes
+      force_apt_get: yes
+
+
+# dnssec-keygen -a HMAC-MD5 -b 128 -r /dev/urandom -n USER DDNS_UPDATE
+# sudo pip3 install --upgrade certbot
+# sudo pip3 install --upgrade certbot-dns-route53

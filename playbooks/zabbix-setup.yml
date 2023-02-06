@@ -1,0 +1,21 @@
+---
+
+# - hosts: zabbix1.viskum-net.dk
+#    roles:
+#      - { role: letsencrypt-client, letsencrypt_new_domain: testtest.com }
+
+- hosts: ns1.viskum-net.dk
+  roles:
+    - { role: letsencrypt-client, letsencrypt_new_domain: zabbix.viskum-net.dk, letsencrypt_host_type: controller }
+
+
+- hosts: zabbix1.viskum-net.dk
+  roles:
+    - { role: letsencrypt-client, letsencrypt_new_domain: zabbix.viskum-net.dk, letsencrypt_host_type: zabbix, become: yes }
+
+- hosts: zabbix1.viskum-net.dk
+  roles:
+    - { role: geerlingguy.apache, become: yes }
+    - { role: dj-wasabi.zabbix-server, zabbix_server_database: mysql, zabbix_server_database_long: mysql, zabbix_server_dbport: 3306, become: yes }
+    - { role: dj-wasabi.zabbix-web, zabbix_url: zabbix.viskum-net.dk, zabbix_server_database: mysql, zabbix_server_database_long: mysql, zabbix_server_dbport: 3306, zabbix_apache_tls_crt: /etc/zabbix/certs/fullchain.pem, zabbix_apache_tls_key: /etc/zabbix/certs/privkey.pem, zabbix_apache_tls: true, zabbix_apache_redirect: true, zabbix_apache_SSLPassPhraseDialog: builtin, become: yes }
+    - { role: dj-wasabi.zabbix-agent, zabbix_agent_server: localhost, zabbix_install_pip_packages: False, become: yes }

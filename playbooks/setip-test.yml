@@ -1,0 +1,5 @@
+---
+
+- hosts: zabbix1.viskum-net.dk
+  roles:
+    - { role: set-ip, setip_dhcp: true, setip_IP: 192.168.12.181 }

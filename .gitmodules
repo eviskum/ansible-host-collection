@@ -1,0 +1,45 @@
+[submodule "roles/vagrant-network"]
+	path = roles/vagrant-network
+	url = https://github.com/eviskum/Ansible-role-vagrant-network.git
+[submodule "roles/systemd-timer"]
+	path = roles/systemd-timer
+	url = https://github.com/eviskum/Ansible-role-systemd-timer.git
+[submodule "roles/dns-dhcp"]
+	path = roles/dns-dhcp
+	url = https://github.com/eviskum/Ansible-role-dns-dhcp.git
+[submodule "roles/unifi-controller"]
+	path = roles/unifi-controller
+	url = https://github.com/eviskum/Ansible-role-unifi-controller.git
+[submodule "roles/letsencrypt-server"]
+	path = roles/letsencrypt-server
+	url = https://github.com/eviskum/Ansible-role-letsencrypt-server.git
+[submodule "roles/letsencrypt-client"]
+	path = roles/letsencrypt-client
+	url = https://github.com/eviskum/Ansible-role-letsencrypt-client.git
+[submodule "roles/set-ip"]
+	path = roles/set-ip
+	url = https://github.com/eviskum/Ansible-role-set-ip.git
+[submodule "roles/hostmachine"]
+	path = roles/hostmachine
+	url = https://github.com/eviskum/Ansible-role-hostmachine.git
+[submodule "roles/apache"]
+	path = roles/apache
+	url = https://github.com/eviskum/Ansible-role-apache.git
+[submodule "roles/zabbix-server"]
+	path = roles/zabbix-server
+	url = https://github.com/eviskum/Ansible-role-zabbix-server.git
+[submodule "roles/zabbix-web"]
+	path = roles/zabbix-web
+	url = https://github.com/eviskum/Ansible-role-zabbix-web.git
+[submodule "roles/zabbix-agent"]
+	path = roles/zabbix-agent
+	url = https://github.com/eviskum/Ansible-role-zabbix-agent.git
+[submodule "roles/plex"]
+	path = roles/plex
+	url = https://github.com/eviskum/Ansible-role-plex.git
+[submodule "roles/pihole"]
+	path = roles/pihole
+	url = https://github.com/eviskum/Ansible-role-pihole.git
+[submodule "roles/openhab3"]
+	path = roles/openhab3
+	url = https://github.com/eviskum/Ansible-role-openhab3.git
