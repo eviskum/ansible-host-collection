@@ -43,3 +43,9 @@
 [submodule "roles/openhab3"]
 	path = roles/openhab3
 	url = https://github.com/eviskum/Ansible-role-openhab3.git
+[submodule "docker"]
+	path = docker
+	url = https://github.com/geerlingguy/ansible-role-docker.git
+[submodule "pip"]
+	path = pip
+	url = https://github.com/geerlingguy/ansible-role-pip.git
